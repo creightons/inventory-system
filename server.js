@@ -1,8 +1,10 @@
 const express = require('express'),
+	Promise = require('bluebird'),
 	mongoose = require('mongoose');
 
 require('dotenv').config();
 
+mongoose.Promise = Promise;
 mongoose.connect(process.env.DB_HOST);
 const app = express();
 

@@ -9,9 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "mongoose": "^4.9.0",
     "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "sinon": "^2.1.0"
   }
 }
