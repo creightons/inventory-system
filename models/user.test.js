@@ -5,7 +5,6 @@ const User = require('./user.js'),
 
 require('dotenv').config();
 
-mongoose.connect(process.env.TEST_DB_HOST)
 mongoose.Promise = require('bluebird');
 
 let clock;
@@ -13,9 +12,12 @@ let clock;
 const time = new Date('2017-01-01');
 
 describe('User Model', function() {
-	beforeEach(function(done) {
+	before(function() {
+		mongoose.connect(process.env.TEST_DB_HOST)
 		clock = sinon.useFakeTimers(time);
-	
+	});
+
+	beforeEach(function(done) {
 		User.remove({}).then(() => {
 			return done();
 		}).catch(err => {
@@ -23,9 +25,10 @@ describe('User Model', function() {
 		});
 	});
 
-	afterEach(function() {
+	after(function() {
+		mongoose.connection.close();
 		clock.restore();
-	})
+	});
 
 	it('should create a new instance without issue', function() {
 		const args = {
@@ -54,7 +57,7 @@ describe('User Model', function() {
 		};
 
 		const newUser = User(args);
-		return newUser. save().then(() => {
+		return newUser.save().then(() => {
 			return User.find({});
 		}).then(results => {
 			assert.deepEqual(
@@ -72,7 +75,7 @@ describe('User Model', function() {
 					lastName: results[0].lastName,
 					created: results[0].created,
 				}
-			)
+			);
 		});
 	});
 });
