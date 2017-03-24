@@ -5,3 +5,11 @@ html
 		meta(charset='utf-8')
 	body
 		div Welcome to the Inventory Management System
+		form(method='POST' action='/login')
+			div
+				label(for='username') Username
+				input(type='text' id='username' name='username')
+			div
+				label(for='password') Password
+				input(type='password' id='password' name='password')
+			button(type='submit') Submit
