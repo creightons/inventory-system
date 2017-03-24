@@ -23,6 +23,11 @@ router.post(
 	)
 );
 
+router.post('/logout', (req, res) => {
+	req.logout();
+	res.status(200).redirect('/');
+});
+
 router.get('/main', isAuthenticated, (req, res) => {
 	res.status(200).render('main');
 });
