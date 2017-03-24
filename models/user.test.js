@@ -1,20 +1,14 @@
 const User = require('./user.js'),
 	mongoose = require('mongoose'),
-	{ assert } = require('chai'),
-	sinon = require('sinon');
+	{ assert } = require('chai');
 
 require('dotenv').config();
 
 mongoose.Promise = require('bluebird');
 
-let clock;
-
-const time = new Date('2017-01-01');
-
 describe('User Model', function() {
 	before(function() {
 		mongoose.connect(process.env.TEST_DB_HOST)
-		clock = sinon.useFakeTimers(time);
 	});
 
 	beforeEach(function(done) {
@@ -27,7 +21,6 @@ describe('User Model', function() {
 
 	after(function() {
 		mongoose.connection.close();
-		clock.restore();
 	});
 
 	it('should create a new instance without issue', function() {
@@ -60,22 +53,25 @@ describe('User Model', function() {
 		return newUser.save().then(() => {
 			return User.find({});
 		}).then(results => {
+			const user = results[0];
+
 			assert.deepEqual(
 				{
 					username: args.username,
 					password: args.password,
 					firstName: args.firstName,
 					lastName: args.lastName,
-					created: time,
 				},
 				{
-					username: results[0].username,
-					password: results[0].password,
-					firstName: results[0].firstName,
-					lastName: results[0].lastName,
-					created: results[0].created,
+					username: user.username,
+					password: user.password,
+					firstName: user.firstName,
+					lastName: user.lastName,
 				}
 			);
+
+			assert.strictEqual(user.createdAt instanceof Date, true);
+			assert.strictEqual(user.updatedAt instanceof Date, true);
 		});
 	});
 });
