@@ -1,5 +1,6 @@
 const passport = require('passport'),
-	express = require('express');
+	express = require('express'),
+	Product = require('./models/product');
 
 const router = express.Router();
 
@@ -29,7 +30,12 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/main', isAuthenticated, (req, res) => {
-	res.status(200).render('main');
+
+	Product.find({}).select('name').then(products => {
+		return res.status(200).render('main', {
+			products,
+		});
+	});
 });
 
 module.exports = router;
