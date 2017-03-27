@@ -1,0 +1,17 @@
+@import 'constants';
+
+.content {
+	display: flex;
+	flex-direction: row;
+}
+
+.sidebar {
+	flex: 1;
+	padding-top: $spacing-medium;
+}
+
+.main {
+	flex: 5;
+	padding-top: $spacing-medium;
+	margin: 0 $spacing-small;
+}

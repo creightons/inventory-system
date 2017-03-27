@@ -1,0 +1,17 @@
+@import 'constants';
+
+.list {}
+
+.list__item {
+	font-size: $font-size-3;
+	color: $white;
+	padding-top: $spacing-medium;
+	padding-left: $spacing-medium;
+	padding-bottom: $spacing-medium;
+
+	cursor: pointer;
+
+	&:hover {
+		background-color: $wisteria;
+	}
+}
