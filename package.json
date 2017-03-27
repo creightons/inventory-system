@@ -4,7 +4,11 @@
   "description": ": Implementation of a simple inventory system\u001b",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed-db": "node scripts/seed-db.js",
+    "build-css": "node-sass ./styles/index.scss ./dist/style.css",
+    "build-css-with-source-map": "node-sass --source-map-embed ./styles/index.scss ./dist/style.css",
+    "watch-css": "npm run build-css-with-source-map && npm run build-css-with-source-map -- -w"
   },
   "author": "",
   "license": "ISC",
@@ -24,10 +28,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "morgan": "^1.8.1",
+    "node-sass": "^4.5.1",
     "sinon": "^2.1.0"
-  },
-  "scripts": {
-      "start": "node server.js",
-      "seed-db": "node scripts/seed-db.js"
   }
 }

@@ -30,7 +30,6 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/main', isAuthenticated, (req, res) => {
-
 	Product.find({}).select('name').then(products => {
 		return res.status(200).render('main', {
 			products,

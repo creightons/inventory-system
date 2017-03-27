@@ -3,12 +3,20 @@ html
 	head
 		meta(charset='utf-8')
 		title Main Page
+		link(rel='stylesheet' href='/dist/style.css')
 	body
-		Main Inventory
+		nav.navbar.flex.flex--apart
+			h1.navbar__title Inventory Sys
+			form(method="post" action="logout")
+				button(type="submit").navbar__logout Logout
 
-		form(method="post" action="logout")
-			button(type="submit") Logout
-
-		ul
-			each product in productNames
-				li= product.name
+		section.container
+			div.card
+				header.card__header
+					h2.card__title Products
+				div.list
+					div.list__header.flex.flex--apart
+						span Product
+					ul
+						each product in products
+							li.list__row= product.name

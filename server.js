@@ -55,8 +55,11 @@ app.use(passport.session());
 // Apply template engine
 app.set('view engine', 'pug');
 
-// Set view directory
+// Set view directory	
 app.set('views', 'views');
+
+// Declare static directory
+app.use('/dist', express.static('dist'));
 
 // Attach routes
 app.use(router);
