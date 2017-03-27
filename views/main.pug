@@ -28,6 +28,6 @@ html
 						each product in products
 							div.table__row.table__row--border
 								div.table__cell.table__cell--item= product.name
-								div.table__cell.table__cell--item= product.price
+								div.table__cell.table__cell--item $#{product.price}
 								div.table__cell.table__cell--item= product.vendor
 								div.table__cell.table__cell--item= product.productId
