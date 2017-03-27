@@ -1,0 +1,36 @@
+@import 'constants';
+
+// for .list block
+
+.table {
+	margin: 0 10px;
+}
+
+.table__row {
+	display: flex;
+	padding: 10px 0;
+}
+
+.table__row--border:not(:last-child) {
+	border-bottom-style: solid;
+	border-bottom-color: $wisteria;
+	border-bottom-width: 2px;
+}
+
+.table__cell {
+	flex: 1;
+	color: $black;
+	padding: $spacing-small;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.table__cell--item {
+	font-size: $font-size-4;
+}
+
+.table__cell--header {
+	font-size: $font-size-3;
+}
