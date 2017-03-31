@@ -2,6 +2,7 @@ const mongoose = require('mongoose'),
 	Promise = require('bluebird'),
 	dotenv = require('dotenv'),
 	User = require('../models/user'),
+	Customer = require('../models/customer'),
 	Product = require('../models/product');
 
 // Apply ENV variables
@@ -81,6 +82,83 @@ const newProducts = [{
 	vendor: 'Lenovo',
 }];
 
+const newCustomers = [{
+	companyName: 'Alpha, Inc',
+	address: '123 Northern Avenue',
+}, {
+	companyName: "Bob's Computer Palace",
+	address: "16 Main St.",
+}, {
+	companyName: 'Laptop Heaven',
+	address: '741A Riley Blvd',
+}, {
+	companyName: 'Smith & Sons',
+	address: '34 Copley Ave',
+}, {
+	companyName: 'Laptop Heaven',
+	address: '741A Riley Blvd',
+}, {
+	companyName: 'Laptop Heaven',
+	address: '741A Riley Blvd',
+}, {
+	companyName: 'Computer Depot',
+	address: '13 41st St',
+}, {
+	companyName: 'Computer Kingdom',
+	address: '949 Winter St',
+}, {
+	companyName: 'Warehouse Blues',
+	address: '53 Vue St',
+}, {
+	companyName: 'Tech World',
+	address: '1142 Center St',
+}, {
+	companyName: 'Malware Defense',
+	address: '4 Madison Ave',
+}, {
+	companyName: 'The Everything Store',
+	address: '1991 Huntsman Rd',
+}, {
+	companyName: 'Tech Savy',
+	address: '65 Long St',
+}, {
+	companyName: 'The Hardware Store',
+	address: '742 Chevy Blvd',
+}, {
+	companyName: 'Super Defenders',
+	address: '93 Silicon Rd',
+}, {
+	companyName: 'Database Experts',
+	address: '18 Markey Way',
+}, {
+	companyName: 'Sublime Computers',
+	address: '45 Narwhal St',
+}, {
+	companyName: 'Data Defenders',
+	address: '78 Yawkey Avenue',
+}, {
+	companyName: 'All The CPUs',
+	address: '32B Blue Hill Ave',
+}, {
+	companyName: 'Computer Domain',
+	address: '12 River St',
+}, {
+	companyName: 'GPU Center',
+	address: '59 Cambridge St',
+	}, {
+	companyName: 'ICG Computer',
+	address: '99 Somersette St',
+}, {
+	companyName: 'The Appliance Store',
+	address: '43 Newton Rd',
+}, {
+	companyName: 'PC Repair',
+	address: '4357 Second St',
+}, {
+	companyName: 'Tech Center',
+	address: '3 Haven St',
+}];
+
 // Populate Database
 function populateUsers() {
 	return User.remove({}).then(() => {
@@ -102,10 +180,21 @@ function populateProducts() {
 	);
 }
 
+function populateCustomers() {
+	return Customer.remove({}).then(() => {
+		return Customer.create(newCustomers);
+	}).then(() => {
+		return console.log('Finished populating Customers...');
+	}).catch(
+		err => handleErr(err)
+	);
+}
+
 Promise.join(
 	// Populate Promises
 	populateUsers(),
 	populateProducts(),
+	populateCustomers(),
 	// Final Handler
 	function() {
 		console.log('Finished populating database.');
