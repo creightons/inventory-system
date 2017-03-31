@@ -1,6 +1,8 @@
 const passport = require('passport'),
 	express = require('express'),
-	Product = require('./models/product');
+	dashboardController = require('./controllers/dashboard'),
+	productsController = require('./controllers/products'),
+	customersController = require('./controllers/customers');
 
 const router = express.Router();
 
@@ -18,7 +20,7 @@ router.post(
 	passport.authenticate(
 		'local',
 		{
-			successRedirect: '/main',
+			successRedirect: '/dashboard',
 			failureRedirect: '/',
 		}
 	)
@@ -29,12 +31,9 @@ router.post('/logout', (req, res) => {
 	res.status(200).redirect('/');
 });
 
-router.get('/main', isAuthenticated, (req, res) => {
-	Product.find({}).select('name price vendor productId').then(products => {
-		return res.status(200).render('main', {
-			products,
-		});
-	});
-});
+router.use(isAuthenticated);
+router.use(dashboardController);
+router.use(productsController);
+router.use(customersController);
 
 module.exports = router;

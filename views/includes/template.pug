@@ -1,0 +1,22 @@
+doctype html
+html
+	head
+		meta(charset='utf-8')
+		title Main Page
+		link(rel='stylesheet' href='/dist/style.css')
+	body
+		nav.navbar.flex.flex--apart
+			h1.navbar__title Inventory Sys
+			form(method="post" action="logout")
+				button(type="submit").navbar__logout Logout
+		div.content
+			aside.sidebar
+				ul.list
+					a(href='/dashboard')
+						li.list__item Dashboard
+					a(href='/products')
+						li.list__item Products
+					a(href='/customers')
+						li.list__item Customers
+			main.main.container
+				block content
