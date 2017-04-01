@@ -2,7 +2,8 @@ const passport = require('passport'),
 	express = require('express'),
 	dashboardController = require('./controllers/dashboard'),
 	productsController = require('./controllers/products'),
-	customersController = require('./controllers/customers');
+	customersController = require('./controllers/customers'),
+	ordersController = require('./controllers/orders');
 
 const router = express.Router();
 
@@ -35,5 +36,6 @@ router.use(isAuthenticated);
 router.use(dashboardController);
 router.use(productsController);
 router.use(customersController);
+router.use(ordersController);
 
 module.exports = router;

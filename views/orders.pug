@@ -1,0 +1,16 @@
+extends includes/template.pug
+
+block content
+	div.card
+		header.card__header
+			h2.card__title Products
+		div.table
+			div.table__row.table__row--border
+				div.table__cell.table__cell--header Product
+				div.table__cell.table__cell--header Quantity
+				div.table__cell.table__cell--header Customer
+			each order in orders
+				div.table__row.table__row--border
+					div.table__cell.table__cell--item= order.product.name
+					div.table__cell.table__cell--item= order.quantity
+					div.table__cell.table__cell--item= order.customer.companyName
