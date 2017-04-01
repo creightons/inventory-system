@@ -3,7 +3,8 @@ const mongoose = require('mongoose'),
 	dotenv = require('dotenv'),
 	User = require('../models/user'),
 	Customer = require('../models/customer'),
-	Product = require('../models/product');
+	Product = require('../models/product'),
+	Order = require('../models/order');
 
 // Apply ENV variables
 dotenv.config();
@@ -190,17 +191,67 @@ function populateCustomers() {
 	);
 }
 
+// Given an array of elements, returns a random element
+function getRandom(dataSet) {
+	const length = dataSet.length - 1;
+	const index = Math.floor(
+		Math.random() * length
+	);
+	return dataSet[index];
+};
+
+function populateOrders() {
+	return Order.remove({}).then(() => {
+		return Promise.join(
+			Customer.find({}),
+			Product.find({}),
+			(customers, products) => {
+				const numberOfOrders = 1000;
+				const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+				const orderPromises = [];
+				let currentQuantity,
+					currentProduct,
+					currentCustomer;
+
+				for (let i = 0; i < numberOfOrders; i++) {
+					currentQuantity = getRandom(quantities);
+					currentCustomer = getRandom(customers);
+					currentProduct = getRandom (products);
+					orderPromises.push(
+						new Order({
+							product: currentProduct._id,
+							customer: currentCustomer._id,
+							quantity: currentQuantity,
+						}).save()
+					);
+				}
+
+				return Promise.all(orderPromises);
+			}
+		);
+	});
+}
+
+// Populate database
 Promise.join(
-	// Populate Promises
+	// Populate Promises For Independent Models
 	populateUsers(),
 	populateProducts(),
 	populateCustomers(),
 	// Final Handler
 	function() {
-		console.log('Finished populating database.');
-		process.exit();
+		console.log('Finished populating independent models.');
+		return Promise.resolve();
 	}
-).catch(err => {
+).then(
+	// Populate Orders, which depend on Customers and Products
+	() => populateOrders()
+).then(() => {
+	console.log('Finished populating orders.');
+	console.log('Finished populating database.');
+	process.exit();
+}).catch(err => {
 	console.log('The seed process failed because of an error.');
+	console.log('err = ', err);
 	process.exit();
 });
