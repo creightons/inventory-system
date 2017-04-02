@@ -3,14 +3,23 @@ extends includes/template.pug
 block content
 	div.card
 		header.card__header
-			h2.card__title Products
+			h2.card__title Orders
 		div.table
-			div.table__row.table__row--border
-				div.table__cell.table__cell--header Product
-				div.table__cell.table__cell--header Quantity
-				div.table__cell.table__cell--header Customer
-			each order in orders
+			if previousButtonEnabled
+				a(href=previousButtonUrl).table__nav-button.table__nav-button--active <
+			else
+				div.table__nav-button.table__nav-button--inactive <
+			
+			div.table__rows
 				div.table__row.table__row--border
-					div.table__cell.table__cell--item= order.product.name
-					div.table__cell.table__cell--item= order.quantity
-					div.table__cell.table__cell--item= order.customer.companyName
+					each title in columnTitles
+						div.table__cell.table__cell--header= title
+				each row in rows
+					div.table__row.table__row--border
+						each value in row
+							div.table__cell.table__cell--item= value
+
+			if nextButtonEnabled
+				a(href=nextButtonUrl).table__nav-button.table__nav-button--active >
+			else
+				div.table__nav-button.table__nav-button--inactive >
