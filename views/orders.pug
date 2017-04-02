@@ -4,22 +4,5 @@ block content
 	div.card
 		header.card__header
 			h2.card__title Orders
-		div.table
-			if previousButtonEnabled
-				a(href=previousButtonUrl).table__nav-button.table__nav-button--active <
-			else
-				div.table__nav-button.table__nav-button--inactive <
-			
-			div.table__rows
-				div.table__row.table__row--border
-					each title in columnTitles
-						div.table__cell.table__cell--header= title
-				each row in rows
-					div.table__row.table__row--border
-						each value in row
-							div.table__cell.table__cell--item= value
-
-			if nextButtonEnabled
-				a(href=nextButtonUrl).table__nav-button.table__nav-button--active >
-			else
-				div.table__nav-button.table__nav-button--inactive >
+		
+		include includes/table.pug

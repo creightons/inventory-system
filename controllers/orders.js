@@ -46,12 +46,14 @@ router.get('/orders', function(req, res) {
 
 
 			return res.status(200).render('orders', {
-				nextButtonEnabled,
-				previousButtonEnabled,
-				nextButtonUrl,
-				previousButtonUrl,
-				columnTitles,
-				rows,
+				table: {
+					nextButtonEnabled,
+					previousButtonEnabled,
+					nextButtonUrl,
+					previousButtonUrl,
+					columnTitles,
+					rows,
+				},
 			});
 		})
 		.catch(err => {
