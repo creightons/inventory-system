@@ -4,11 +4,5 @@ block content
 	div.card
 		header.card__header
 			h2.card__title Customers
-		div.table
-			div.table__row.table__row--border
-				div.table__cell.table__cell--header Name
-				div.table__cell.table__cell--header Address
-			each customer in customers
-				div.table__row.table__row--border
-					div.table__cell.table__cell--item= customer.companyName
-					div.table__cell.table__cell--item= customer.address
+
+		include includes/table.pug
