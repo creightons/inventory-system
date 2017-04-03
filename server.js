@@ -8,11 +8,12 @@ const express = require('express'),
 	connectRedis = require('connect-redis'),
 	passport = require('passport'),
 	router = require('./router'),
-	dotenv = require('dotenv'),
 	startPassport = require('./passport.config');
 
-// Setup environment variables
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+	// Apply ENV variables
+	require('dotenv').config();
+}
 
 // Setup and Promisify mongoose
 mongoose.Promise = Promise;

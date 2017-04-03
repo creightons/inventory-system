@@ -1,13 +1,14 @@
 const mongoose = require('mongoose'),
 	Promise = require('bluebird'),
-	dotenv = require('dotenv'),
 	User = require('../models/user'),
 	Customer = require('../models/customer'),
 	Product = require('../models/product'),
 	Order = require('../models/order');
 
-// Apply ENV variables
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+	// Apply ENV variables
+	require('dotenv').config();
+}
 
 mongoose.connect(process.env.DB_HOST);
 console.log(process.env.DB_HOST);

@@ -1,6 +1,9 @@
 {
   "name": "inventory-system",
   "version": "1.0.0",
+  "engines": {
+	  "node": "6.9.3"
+  },
   "description": ": Implementation of a simple inventory system\u001b",
   "main": "server.js",
   "scripts": {
