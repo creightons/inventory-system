@@ -13,9 +13,6 @@ const express = require('express'),
 if (process.env.NODE_ENV !== 'production') {
 	// Apply ENV variables
 	require('dotenv').config();
-
-	// Use morgan for simple logging
-	app.use(morgan('dev'));
 }
 
 // Setup and Promisify mongoose
@@ -24,6 +21,9 @@ mongoose.connect(process.env.DB_HOST);
 
 // Instantiate App
 const app = express();
+
+// Use morgan for simple logging
+app.use(morgan('dev'));
 
 // Parse FORM data messages
 app.use( bodyParser.urlencoded({ extended: false }) );

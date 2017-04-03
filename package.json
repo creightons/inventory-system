@@ -2,7 +2,7 @@
   "name": "inventory-system",
   "version": "1.0.0",
   "engines": {
-	  "node": "6.9.3"
+    "node": "6.9.3"
   },
   "description": ": Implementation of a simple inventory system\u001b",
   "main": "server.js",
@@ -24,13 +24,13 @@
     "express": "^4.15.2",
     "express-session": "^1.15.1",
     "mongoose": "^4.9.0",
+    "morgan": "^1.8.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta11"
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "morgan": "^1.8.1",
     "node-sass": "^4.5.1",
     "sinon": "^2.1.0"
   }
