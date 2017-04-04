@@ -1,0 +1,11 @@
+@import 'constants';
+
+.button {
+	font-size: $font-size-3;
+	color: $white;
+	background-color: $wisteria;
+	display: inline-block;
+	cursor: pointer;
+	padding: $spacing-small;
+	margin-bottom: $spacing-medium;
+}

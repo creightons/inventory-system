@@ -30,4 +30,8 @@ router.get('/customers', (req, res) => {
 	});
 });
 
+router.get('/customers/add', (req, res) => {
+	res.status(200).render('customers-add');
+});
+
 module.exports = router;
