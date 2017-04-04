@@ -9,3 +9,12 @@
 	padding: $spacing-small;
 	margin-bottom: $spacing-medium;
 }
+
+.button--submit {
+	border: none;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: $spacing-medium;
+	display: block;
+}

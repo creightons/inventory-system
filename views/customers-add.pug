@@ -4,3 +4,13 @@ block content
 	div.card
 		header.card__header
 			h2.card__title Add New Customer
+		
+		form(method='POST').form
+			div.input-row
+				div.input-row__title Company Name
+				input.input-row__input(type='text' name='companyName')
+			div.input-row
+				div.input-row__title Address
+				input.input-row__input(type='text' name='address')
+
+			button(type='submit').button.button--submit Submit
