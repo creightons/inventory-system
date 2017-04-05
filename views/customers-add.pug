@@ -8,6 +8,8 @@ block content
 			h2.card__title Add New Customer
 		
 		form(method='POST').form
+			if error
+				div.error #{error}
 			div.input-row
 				div.input-row__title Company Name
 				input.input-row__input(type='text' name='companyName')
