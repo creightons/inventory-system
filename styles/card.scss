@@ -5,6 +5,12 @@
 	margin-bottom: $spacing-medium;
 }
 
+.card--max-width {
+	max-width: $card-max-width;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .card__header {
 	background-color: $wisteria;
 }
