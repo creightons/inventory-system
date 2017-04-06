@@ -1,4 +1,6 @@
 const mongoose = require('mongoose'),
+	{ sortByUpdated } = require('./query-helpers'),
+	moment = require('moment'),
 	{ Schema } = mongoose;
 
 const OrderSchema = new Schema({
@@ -20,5 +22,24 @@ const OrderSchema = new Schema({
 }, {
 	timestamps: true,
 });
+
+OrderSchema.virtual('lastUpdated').get(function() {
+	const updatedTime = moment(this.updatedAt);
+	return updatedTime.format('YYYY-MM-DD');
+});
+
+OrderSchema.statics.getOrders = function() {
+	return this
+		.find({})
+		.select('quantity customer product')
+		.populate('customer', 'companyName')
+		.populate('product', 'name');
+};
+
+OrderSchema.query.mostRecent = sortByUpdated;
+
+OrderSchema.query.withDate = function() {
+	return this.find({}).select('updatedAt');
+}
 
 module.exports = mongoose.model('Order', OrderSchema);

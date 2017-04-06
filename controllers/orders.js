@@ -11,10 +11,7 @@ function mapOrderRow(order){
 }
 
 router.get('/orders', (req, res) => {
-	const query = Order.find({})
-		.select('quantity customer product')
-		.populate('customer', 'companyName')
-		.populate('product', 'name');
+	const query = Order.getOrders();
 
 	const pageNumber = parseInt(req.query.pageNumber) || 1;
 
