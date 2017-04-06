@@ -27,7 +27,7 @@ router.get('/dashboard', function dashboard(req, res) {
 				rows: orders,
 			};
 
-			return res.status(200).render('dashboard', { table: tableContext, products: [] });
+			return res.status(200).render('dashboard', { ordersTable: tableContext, products: [] });
 		})
 		.catch(err => console.log(err));
 });

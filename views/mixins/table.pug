@@ -1,22 +1,21 @@
-#table
+mixin table(data)
 	div.table
-		if table.hasNavigation
-			if table.previousButtonEnabled
-				a(href=table.previousButtonUrl).table__nav-button.table__nav-button--active <
+		if data.hasNavigation
+			if data.previousButtonEnabled
+				a(href=data.previousButtonUrl).table__nav-button.table__nav-button--active <
 			else
 				div.table__nav-button.table__nav-button--inactive <
 		
 		div.table__rows
 			div.table__row.table__row--border
-				each title in table.columnTitles
+				each title in data.columnTitles
 					div.table__cell.table__cell--header= title
-			each row in table.rows
+			each row in data.rows
 				div.table__row.table__row--border
 					each value in row
 						div.table__cell.table__cell--item= value
-
-		if table.hasNavigation
-			if table.nextButtonEnabled
-				a(href=table.nextButtonUrl).table__nav-button.table__nav-button--active >
+		if data.hasNavigation
+			if data.nextButtonEnabled
+				a(href=data.nextButtonUrl).table__nav-button.table__nav-button--active >
 			else
 				div.table__nav-button.table__nav-button--inactive >

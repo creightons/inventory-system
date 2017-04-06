@@ -22,7 +22,7 @@ router.get('/orders', (req, res) => {
 		columnTitles: [ 'Product', 'Quantity', 'Customer' ],
 		rowMappingFunction: mapOrderRow,
 	}).then(tableContext => {
-		res.status(200).render('orders', { table: tableContext });
+		res.status(200).render('orders', { tableData: tableContext });
 	}).catch(err => {
 		console.log('error = ', err);
 		res.status(500).send('error occurred');

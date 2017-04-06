@@ -23,7 +23,7 @@ router.get('/customers', (req, res) => {
 		columnTitles: [ 'Name', 'Address' ],
 		rowMappingFunction: mapCustomerRow,
 	}).then(tableContext => {
-		res.status(200).render('customers', { table: tableContext });
+		res.status(200).render('customers', { tableData: tableContext });
 	}).catch(err => {
 		console.log('error = ', err);
 		res.status(500).send('error occurred');

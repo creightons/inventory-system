@@ -25,7 +25,7 @@ router.get('/products', (req, res) => {
 		columnTitles: [ 'Name', 'Price', 'Vendor', 'Product Id' ],
 		rowMappingFunction: mapProductRow,
 	}).then(tableContext => {
-		res.status(200).render('products', { table: tableContext });
+		res.status(200).render('products', { tableData: tableContext });
 	}).catch(err => {
 		console.log('error = ', err);
 		res.status(500).send('error occurred');

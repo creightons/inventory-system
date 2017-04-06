@@ -1,5 +1,7 @@
 extends includes/template.pug
 
+include mixins/table
+
 block content
 	a(href='/customers/add')
 		div.button Add Customer
@@ -7,4 +9,4 @@ block content
 		header.card__header
 			h2.card__title Customers
 
-		include includes/table.pug
+		+table(tableData)

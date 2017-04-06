@@ -1,8 +1,10 @@
 extends includes/template.pug
 
+include mixins/table.pug
+
 block content
 	div.card
 		header.card__header
 			h2.card__title Most Recent Orders
 
-		include includes/table.pug
+		+table(ordersTable)
