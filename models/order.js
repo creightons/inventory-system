@@ -1,6 +1,6 @@
 const mongoose = require('mongoose'),
 	{ sortByUpdated } = require('./query-helpers'),
-	moment = require('moment'),
+	{ getLastUpdated } = require('./schema-helpers'),
 	{ Schema } = mongoose;
 
 const OrderSchema = new Schema({
@@ -23,10 +23,7 @@ const OrderSchema = new Schema({
 	timestamps: true,
 });
 
-OrderSchema.virtual('lastUpdated').get(function() {
-	const updatedTime = moment(this.updatedAt);
-	return updatedTime.format('YYYY-MM-DD');
-});
+OrderSchema.virtual('lastUpdated').get(getLastUpdated);
 
 OrderSchema.statics.getOrders = function() {
 	return this
