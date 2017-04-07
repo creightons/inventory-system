@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+	{ getLastUpdated } = require('./schema-helpers'),
+	{ sortByUpdated } = require('./query-helpers');
 
 const CustomerSchema = new mongoose.Schema({
 	companyName: { type: String, unqiue: true, required: true },
@@ -7,5 +9,9 @@ const CustomerSchema = new mongoose.Schema({
 }, {
 	timestamps: true,
 });
+
+CustomerSchema.virtual('lastUpdated').get(getLastUpdated);
+
+CustomerSchema.query.mostRecent = sortByUpdated;
 
 module.exports = mongoose.model('Customer', CustomerSchema);

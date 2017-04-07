@@ -1,16 +1,23 @@
 const router = require('express').Router(),
 	Order = require('../models/order'),
 	Product = require('../models/product'),
+	Customer = require('../models/customer'),
 	Promise = require('bluebird');
 
 router.get('/dashboard', function dashboard(req, res) {
 		Promise.join(
 			getMostRecentOrdersContext(),
 			getMostRecentPrductsContext(),
-			function(orderTableData, productTableData) {
+			getMostRecentCustomersContext(),
+			function(
+				orderTableData,
+				productTableData,
+				customerTableData
+			) {
 				return res.status(200).render('dashboard', {
 					orderTable: orderTableData,
 					productTable: productTableData,
+					customerTable: customerTableData,
 				});
 			}
 		)
@@ -81,5 +88,27 @@ function getMostRecentPrductsContext() {
 		});
 }
 
+function getMostRecentCustomersContext() {
+	return Customer
+		.find({})
+		.mostRecent()
+		.limit(MOST_RECENT_LIST_SIZE)
+		.then(customerData => {
+			var customers = customerData.map(data => {
+				return [
+					data.companyName,
+					data.address,
+					data.lastUpdated,
+				];
+			});
+
+			const tableContext = {
+				columnTitles: [ 'Name', 'Address', 'Last Updated' ],
+				rows: customers,
+			};
+
+			return tableContext;
+		});
+}
 
 module.exports = router;
