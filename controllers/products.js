@@ -32,4 +32,8 @@ router.get('/products', (req, res) => {
 	});
 });
 
+router.get('/products/add', (req, res) => {
+	res.status(200).render('products-add');
+});
+
 module.exports = router;

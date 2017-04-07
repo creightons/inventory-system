@@ -3,17 +3,18 @@ extends includes/template.pug
 include mixins/input-row.pug
 
 block content
-	a(href='/customers')
+	a(href='/products')
 		div.button Back
 	div.card.card--max-width
 		header.card__header
-			h2.card__title Add New Customer
+			h2.card__title Add New Product
 		
-		form(method='POST').form
+		form(method='POST' action='/prodcuts/add').form
 			if error
 				div.error #{error}
-
-			+inputRow('Company Name', 'companyName')
-			+inputRow('Address', 'address')
+			
+			+inputRow('Name', 'companyName')
+			+inputRow('Price', 'price')
+			+inputRow('Vendor', 'vendor')
 
 			button(type='submit').button.button--submit Submit
