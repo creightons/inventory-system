@@ -9,12 +9,14 @@ block content
 		header.card__header
 			h2.card__title Add New Product
 		
-		form(method='POST' action='/prodcuts/add').form
+		form(method='POST' action='/products/add').form
 			if error
 				div.error #{error}
 			
-			+inputRow('Name', 'companyName')
+			+inputRow('Name', 'name')
+			+inputRow('Product Id', 'productId')
 			+inputRow('Price', 'price')
 			+inputRow('Vendor', 'vendor')
+			+inputRow('Description', 'description')
 
 			button(type='submit').button.button--submit Submit
