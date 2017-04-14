@@ -3,6 +3,7 @@ const passport = require('passport'),
 	dashboardController = require('./controllers/dashboard'),
 	productsController = require('./controllers/products'),
 	customersController = require('./controllers/customers'),
+	profileController = require('./controllers/profile'),
 	ordersController = require('./controllers/orders');
 
 const router = express.Router();
@@ -37,5 +38,6 @@ router.use(dashboardController);
 router.use(productsController);
 router.use(customersController);
 router.use(ordersController);
+router.use(profileController);
 
 module.exports = router;
