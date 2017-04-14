@@ -3,7 +3,7 @@ const router = require('express').Router(),
 
 router.get('/profile', (req, res) => {
 	const query = User
-		.find({})
+		.findOne({ _id: req.user._id })
 		.select('username firstName lastName')
 		.then(user => {
 			res.status(200).render('profile', {

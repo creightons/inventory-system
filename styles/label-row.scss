@@ -1,0 +1,16 @@
+@import 'constants';
+
+.label-row {
+	display: flex;
+}
+
+.label-row__label {
+	flex: 1;
+	color: $wisteria;
+	font-size: $font-size-4;
+}
+
+.label-row__content {
+	flex: 4;
+	font-size: $font-size-4;
+}
